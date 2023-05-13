@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Erzincan Kalesi</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+  <style>
+    /* Özelleştirilmiş stiller */
+    body {
+      background-color: #f8f9fa;
+    }
+    header {
+      background-color: #343a40;
+      padding: 20px;
+      color: #fff;
+    }
+    header h1 {
+      margin: 0;
+    }
+    .slider-container {
+      position: relative;
+      height: 600px; /* Yükseklik artırıldı */
+      overflow: hidden;
+    }
+    .slider {
+      display: flex;
+      transition: transform 0.3s ease;
+      height: 100%; /* Yükseklik eklendi */
+    }
+    .slide {
+      flex: 0 0 100%;
+      height: 100%; /* Yükseklik eklendi */
+    }
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    section {
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+    section h2 {
+      color: #343a40;
+      margin-bottom: 20px;
+    }
+    section p {
+      color: #6c757d;
+      margin-bottom: 20px;
+    }
+    footer {
+      background-color: #343a40;
+      padding: 20px;
+      color: #fff;
+    }
+    footer p {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1 class="text-center">Erzincan Kalesi</h1>
+    </header>
+
+    <section>
+      <div class="slider-container">
+        <div class="slider">
+          <div class="slide">
+            <img src="images/mirasimiz/kaleSlider1.jpg" alt="Kale Slide 1">
+          </div>
+          <div class="slide">
+            <img src="images/mirasimiz/kaleSlider2.jpg" alt="Kale Slide 2">
+          </div>
+          <div class="slide">
+            <img src="images/mirasimiz/kaleSlider3.jpg" alt="Kale Slide 3">
+          </div>
+        </div>
+      </div>
+      <br></br>
+      <h2>Tarihi Miras: Erzincan Kalesi</h2>
+      <p>Erzincan, zengin bir tarihi geçmişe sahip olan bir şehirdir ve birçok tarihi mirasa ev sahipliği yapmaktadır. Bu miraslardan biri de Erzincan Kalesi'dir.</p>
+
+      <p>Kale, yüksek bir tepe üzerinde konumlanmış olup çevresi surlarla çevrilidir. Kalede yer alan kalıntılar arasında gözetleme kulesi, burçlar ve sur duvarları bulunur. Bu yapılar, kaleyi tarih boyunca saldırılara karşı koruma amacıyla kullanılmıştır.</p>
+
+      <p>Erzincan Kalesi, tarih boyunca birçok medeniyetin egemenliği altına girmiştir. Selçuklular, Moğollar, Osmanlılar gibi farklı dönemlerde hüküm süren bu medeniyetler, kaleye eklemeler yapmış ve onu güçlendirmiştir.</p>
+
+      <p>Bugün, Erzincan Kalesi, tarihi dokusunu koruyan ve ziyaretçilerine geçmişe dair bir yolculuk sunan önemli bir turistik mekandır. Kale, şehir manzarasıyla birlikte ziyaretçilere muhteşem bir panoramik görüntü sunar. Ayrıca, kalede yapılan restorasyon çalışmaları sayesinde tarihi atmosfer korunmuş ve kale yeniden canlandırılmıştır.</p>
+
+    </section>
+
+    <footer class="text-center mt-5">
+      <p>&copy; 2023 Erzincan Kalesi. Tüm hakları saklıdır.</p>
+    </footer>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+  <script>
+    // Slider için JavaScript kodu
+    $(document).ready(function() {
+      $('.slider').slick({
+        dots: true,
+        arrows: false,
+        autoplay: true,
+        autoplaySpeed: 3000
+      });
+    });
+  </script>
+</body>
+</html>
+
