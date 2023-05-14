@@ -1,13 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hakkımda Sayfası</title>
+    <title>Giriş Sayfası</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f1f1f1;
+        }
+
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .links a {
+            display: inline-block;
+            margin-right: 10px;
+            color: #333;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hakkımda</h1>
-    
+    <div class="header">
+        <h1 class="mb-0">Giriş Sayfam</h1>
+    </div>
+
+    <div class="container">
+        <h2>Kendim Hakkında</h2>
+        <p>Merhaba, ben [İsim Soyisim]. Hobilerim arasında [Hobileriniz] bulunur. Ayrıca, [Etkinlikleriniz] gibi etkinliklerle ilgilenmeyi severim.</p>
+
+        <h2>Sevdiğim Sporlar</h2>
+        <ul>
+            <li>Futbol</li>
+            <li>Basketbol</li>
+            <li>Yüzme</li>
+        </ul>
+
+        <h2>Resimler</h2>
+        <img src="resim1.jpg" alt="Resim 1">
+        <img src="resim2.jpg" alt="Resim 2">
+        <img src="resim3.jpg" alt="Resim 3">
+
+        <h2>Linkler</h2>
+        <div class="links">
+            <a href="https://www.example.com">Örnek Link 1</a>
+            <a href="https://www.example.com">Örnek Link 2</a>
+            <a href="https://www.example.com">Örnek Link 3</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.mi.js"></script>
 </body>
 </html>
+
