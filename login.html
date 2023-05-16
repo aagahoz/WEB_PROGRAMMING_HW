@@ -1,0 +1,15 @@
+<script>
+    "use strict";
+      var formGiris = document.forms["girisFormu"];  // form seçimi
+      var eposta = formGiris.eposta;   // eposta alanı seçimi
+      var sifre = formGiris["sifre"];  // sifre alanı seçimi
+    
+      formGiris.onsubmit = function() {
+        if (sifre.value.length > 6) {
+          alert("Şifreniz : " + sifre.value);  // sifre alanı value özelliği
+        } else {
+          alert("Şifre 6 karakterden az !");
+          return false;  // form gönderimini iptal et
+        }
+      }
+    </script>
