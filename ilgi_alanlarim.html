@@ -1,142 +1,103 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>İlgi Alanlarım</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>Parçalar</title>
   <style>
     body {
-      padding: 20px;
+      font-family: Arial, sans-serif;
     }
-    .card {
+
+    .song {
       margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .song img {
+      max-width: 100px;
+      max-height: 100px;
+      margin-right: 10px;
+      float: left;
+    }
+
+    .song h2 {
+      margin-top: 0;
+    }
+
+    .song p {
+      margin: 5px 0;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>İlgi Alanlarım</h1>
+  <h1>Parçalar</h1>
+  <div id="songs"></div>
 
-    <h2>Filmler</h2>
-    <div id="movies" class="row"></div>
-
-    <h2>Spor Etkinlikleri</h2>
-    <div id="sports" class="row"></div>
-
-    <h2>Hava Durumu</h2>
-    <div id="weather"></div>
-  </div>
-
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script>
-    // TMDb API'den veri almak için API anahtarınızı buraya yerleştirin
-    const tmdbApiKey = 'YOUR_TMDB_API_KEY';
+    // Verileri al
+    var data = {
+      "hits": [
+        {
+          "result": {
+            "artist_names": "Matt Elliott",
+            "full_title": "Lone Gunman Required by Matt Elliott",
+            "language": "en",
+            "release_date_components": {
+              "year": 2006,
+              "month": 10,
+              "day": 23
+            }
+          }
+        },
+        {
+          "result": {
+            "artist_names": "Genius Romanizations",
+            "full_title": "The Gazette - Required Malfunction (Romanized) by Genius Romanizations",
+            "language": "romanization",
+            "release_date_components": {
+              "year": 2012,
+              "month": 11,
+              "day": 7
+            }
+          }
+        }
+      ]
+    };
 
-    // Sports Open Data API'den veri almak için API anahtarınızı buraya yerleştirin
-    const sportsApiKey = 'YOUR_SPORTS_API_KEY';
+    // Verileri işle ve görüntüle
+    var songsContainer = document.getElementById('songs');
+    var songs = data.hits;
 
-    // OpenWeatherMap API'den veri almak için API anahtarınızı buraya yerleştirin
-    const weatherApiKey = 'YOUR_WEATHER_API_KEY';
+    songs.forEach(function(song) {
+      var result = song.result;
 
-    // TMDb API'sine istek atacak fonksiyon
-    async function fetchMovies() {
-      try {
-        const response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${tmdbApiKey}`);
-        const data = await response.json();
-        return data.results;
-      } catch (error) {
-        console.log('Hata:', error.message);
-        return [];
-      }
-    }
+      var songDiv = document.createElement('div');
+      songDiv.className = 'song';
 
-    // Sports Open Data API'sine istek atacak fonksiyon
-    async function fetchSports() {
-      try {
-        const response = await fetch('https://www.sportradar.com');
-        const data = await response.json();
-        return data.results;
-      } catch (error) {
-        console.log('Hata:', error.message);
-        return [];
-      }
-    }
+      var image = document.createElement('img');
+      image.src = result.header_image_thumbnail_url;
 
-    // OpenWeatherMap API'sine istek atacak fonksiyon
-    async function fetchWeather() {
-      try {
-        const response = await fetch('https://www.openweathermap.org');
-        const data = await response.json();
-        return data.results;
-      } catch (error) {
-        console.log('Hata:', error.message);
-        return {};
-      }
-    }
-    // Filmleri sayfaya ekleyen fonksiyon
-function renderMovies(movies) {
-const moviesContainer = document.getElementById('movies');
+      var title = document.createElement('h2');
+      title.textContent = result.full_title;
 
-movies.forEach(movie => {
-const card = document.createElement('div');
-card.className = 'col-lg-4 col-md-6';
-const movieTitle = document.createElement('h5');
-movieTitle.textContent = movie.title;
+      var artist = document.createElement('p');
+      artist.textContent = 'Artist: ' + result.artist_names;
 
-const movieOverview = document.createElement('p');
-movieOverview.textContent = movie.overview;
+      var language = document.createElement('p');
+      language.textContent = 'Language: ' + result.language;
 
-card.appendChild(movieTitle);
-card.appendChild(movieOverview);
-moviesContainer.appendChild(card);
-});
-}
+      var releaseDate = document.createElement('p');
+      releaseDate.textContent = 'Release Date: ' + result.release_date_components.month + '/' + result.release_date_components.day + '/' + result.release_date_components.year;
 
-// Spor etkinliklerini sayfaya ekleyen fonksiyon
-function renderSports(sports) {
-const sportsContainer = document.getElementById('sports');
+      songDiv.appendChild(image);
+      songDiv.appendChild(title);
+      songDiv.appendChild(artist);
+      songDiv.appendChild(language);
+      songDiv.appendChild(releaseDate);
 
-sports.forEach(sport => {
-const card = document.createElement('div');
-card.className = 'col-lg-4 col-md-6';
-
-const sportName = document.createElement('h5');
-sportName.textContent = sport.name;
-
-const sportLocation = document.createElement('p');
-sportLocation.textContent = sport.location;
-
-card.appendChild(sportName);
-card.appendChild(sportLocation);
-sportsContainer.appendChild(card);
-});
-}
-
-// Hava durumunu sayfaya ekleyen fonksiyon
-function renderWeather(weather) {
-const weatherContainer = document.getElementById('weather');
-
-const weatherInfo = document.createElement('p');
-weatherInfo.textContent = Şu anki hava durumu: ${weather.description};
-
-weatherContainer.appendChild(weatherInfo);
-}
-
-// Sayfa yüklendiğinde filmleri, spor etkinliklerini ve hava durumunu alıp gösteren fonksiyon
-async function initializePage() {
-const movies = await fetchMovies();
-renderMovies(movies);
-
-const sports = await fetchSports();
-renderSports(sports);
-
-const weather = await fetchWeather();
-renderWeather(weather);
-}
-
-// Sayfa yüklendiğinde başlatma
-document.addEventListener('DOMContentLoaded', initializePage);
-</script>
-
+      songsContainer.appendChild(songDiv);
+    });
+  </script>
 </body>
 </html>

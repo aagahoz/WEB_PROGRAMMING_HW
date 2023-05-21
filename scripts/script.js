@@ -1,59 +1,54 @@
-// IMDb API'sinden veri çekme işlemi
-async function fetchData() {
-    try {
-      const response = await axios.get('https://imdb-api.com/{API_ENDPOINT}');
-      const data = response.data;
-      showResults(data); // Alınan verileri işle ve göster fonksiyonuna gönder
-    } catch (error) {
-      console.error(error);
+
+document.addEventListener("DOMContentLoaded", async function () {
+  const url = 'https://genius-song-lyrics1.p.rapidapi.com/search/?q=%3CREQUIRED%3E&per_page=10&page=1';
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': 'b1af1996bamshe4b8cc1099014b0p13359bjsn720bc392c49d',
+      'X-RapidAPI-Host': 'genius-song-lyrics1.p.rapidapi.com'
     }
+  };
+
+  try {
+    const response = await fetch(url, options);
+    const result = await response.text();
+    console.log(result);
+
+    // Verileri işle ve görüntüle
+    var songsContainer = document.getElementById('songs');
+    var songs = response.hits;
+
+    songs.forEach(function (song) {
+      var result = song.result;
+
+      var songDiv = document.createElement('div');
+      songDiv.className = 'song';
+
+      var image = document.createElement('img');
+      image.src = result.header_image_thumbnail_url;
+
+      var title = document.createElement('h2');
+      title.textContent = result.full_title;
+
+      var artist = document.createElement('p');
+      artist.textContent = 'Artist: ' + result.artist_names;
+
+      var language = document.createElement('p');
+      language.textContent = 'Language: ' + result.language;
+
+      var releaseDate = document.createElement('p');
+      releaseDate.textContent = 'Release Date: ' + result.release_date_components.month + '/' + result.release_date_components.day + '/' + result.release_date_components.year;
+
+      songDiv.appendChild(image);
+      songDiv.appendChild(title);
+      songDiv.appendChild(artist);
+      songDiv.appendChild(language);
+      songDiv.appendChild(releaseDate);
+
+      songsContainer.appendChild(songDiv);
+    });
+  } catch (error)
+  {
+    console.error(error);
   }
-  
-  // Alınan verileri işle ve göster
-  function showResults(data) {
-    const resultsDiv = document.getElementById('results');
-    resultsDiv.innerHTML = '';
-  
-    const groupedData = groupData(data); // Verileri grupla
-  
-    for (const [category, items] of Object.entries(groupedData)) {
-      const categoryHeading = document.createElement('h2');
-      categoryHeading.textContent = category;
-      resultsDiv.appendChild(categoryHeading);
-  
-      const categoryList = document.createElement('ul');
-  
-      for (const item of items) {
-        const listItem = document.createElement('li');
-        listItem.innerHTML = `
-          <h3>${item.title}</h3>
-          <p>${item.description}</p>
-          <img src="${item.image}" alt="${item.title}">
-        `;
-        categoryList.appendChild(listItem);
-      }
-  
-      resultsDiv.appendChild(categoryList);
-    }
-  }
-  
-  // Verileri kategoriye göre grupla
-  function groupData(data) {
-    const groupedData = {};
-  
-    for (const item of data) {
-      const category = item.category;
-      if (!groupedData[category]) {
-        groupedData[category] = [];
-      }
-      groupedData[category].push(item);
-    }
-  
-    return groupedData;
-  }
-  
-  // Sayfa yüklendiğinde verileri çek
-  window.addEventListener('load', () => {
-    fetchData();
-  });
-  
+});
